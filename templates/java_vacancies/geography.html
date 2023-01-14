@@ -5,16 +5,69 @@
     <li><a href="{% url 'vacancies:index' %}">Главная</a></li>
     <li><a href="{% url 'vacancies:demand' %}">Востребованность</a></li>
     <li class="current_page_item"><a href="{% url 'vacancies:geography' %}">География</a></li>
-     <li><a href="{% url 'vacancies:skills' %}">Навыки</a></li>
+    <li><a href="{% url 'vacancies:skills' %}">Навыки</a></li>
     <li><a href="{% url 'vacancies:hh_vacancies' %}">Последние вакансии</a></li>
-
 {% endblock page_items %}
 
 {% block content %}
-    <h1 style="text-align: center">Скоро тут будет информация</h1>
-        <img class="center_image" src="{% static 'images/image.jpg' %}" width="600" height="500" alt=""/>
+    <h1>География.</h1>
+    <div class="skills_div">
+        <div class="skill_div">
+            <h2> Средняя зарплата по городам </h2>
+            <table class="table_blur">
+                <thead>
+                <tr>
+                    <th>Город</th>
+                    <th>Средняя зарплата</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for aver in aver_salaries %}
+                    <tr>
+                        <td>{{ aver.name }}</td>
+                        <td>{{ aver.aver_salary }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+
+        <div class="skill_div">
+            <h2> Доля вакансий по городам </h2>
+            <table class="table_blur">
+                <thead>
+                <tr>
+                    <th>Город</th>
+                    <th>Доля</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for aver in shares %}
+                    <tr>
+                        <td>{{ aver.name }}</td>
+                        <td>{{ aver.share }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+    <br>
+    <div>
+        <h2 class="center_image">График средней зарплаты по городам</h2>
+        <img class="center_image" src="{% static 'images/aver_sal.png' %}" width="550" height="320" alt=""/>
+        <br>
+        <br>
+        <br>
+
+        <h2 class="center_image">Доля вакансий по городам</h2>
+        <img class="center_image" src="{% static 'images/aver_sal_circle.png' %}" width="550" height="320" alt=""/>
+    </div>
+    <br>
+    <br>
+
 
 {% endblock content %}
-
-
-

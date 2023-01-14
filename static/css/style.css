@@ -648,6 +648,13 @@ a:hover {
     margin-left: 25px;
 }
 
-.skill_div {
+.div_center {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 30px;
+}
 
+#images{
+    text-align:center;
 }
