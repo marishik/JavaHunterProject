@@ -1,0 +1,20 @@
+{% extends "java_vacancies/base.html" %}
+{% load static %}
+
+{% block page_items %}
+    <li><a href="{% url 'vacancies:index' %}">Главная</a></li>
+    <li class="current_page_item"><a href="{% url 'vacancies:demand' %}">Востребованность</a></li>
+    <li><a href="{% url 'vacancies:geography' %}">География</a></li>
+     <li><a href="{% url 'vacancies:skills' %}">Навыки</a></li>
+     <li><a href="{% url 'vacancies:hh_vacancies' %}">Последние вакансии</a></li>
+
+{% endblock page_items %}
+{% block content %}
+
+    <h1 style="text-align: center">Скоро тут будет информация</h1>
+    <img class="center_image" src="{% static 'images/image.jpg' %}" width="600" height="500" alt=""/>
+
+{% endblock content %}
+
+
+

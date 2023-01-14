@@ -1,0 +1,74 @@
+{% extends "java_vacancies/base.html" %}
+
+{% block page_items %}
+    <li><a href="{% url 'vacancies:index' %}">Главная</a></li>
+    <li><a href="{% url 'vacancies:demand' %}">Востребованность</a></li>
+    <li><a href="{% url 'vacancies:geography' %}">География</a></li>
+    <li><a href="{% url 'vacancies:skills' %}">Навыки</a></li>
+    <li class="current_page_item"><a href="{% url 'vacancies:hh_vacancies' %}">Последние вакансии</a></li>
+
+{% endblock page_items %}
+
+{% block content %}
+    <h1>10 последних вакансий с headhunter-а</h1>
+    <table class="table_blur">
+        <thead>
+        <tr>
+            <th>Номер</th>
+            <th>Название вакансии</th>
+            <th>Описание вакансии</th>
+            <th>Навыки</th>
+            <th>Оклад от</th>
+            <th>Оклад до</th>
+            <th>Валюта оклада</th>
+            <th>Название региона</th>
+            <th>Дата публикации</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for vacancy in vacancies %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ vacancy.name }}</td>
+                <td>
+                    <div class="content">{{ vacancy.desc }}</div>
+                    <button class="collapsible">Раскрыть</button>
+
+                </td>
+                <td>{{ vacancy.skills }}</td>
+                <td>{{ vacancy.salary_from }}</td>
+                <td>{{ vacancy.salary_to }}</td>
+                <td>{{ vacancy.salary_currency }}</td>
+                <td>{{ vacancy.region }}</td>
+                <td>{{ vacancy.date_publication }}</td>
+            </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <script type="text/javascript">
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        let but = coll[i];
+        but.addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.previousElementSibling;
+            if (content.style.maxHeight === content.scrollHeight + "px") {
+                content.style.maxHeight = "150px";
+                but.textContent = "Раскрыть"
+
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                but.textContent = "Закрыть"
+            }
+        });
+    }
+</script>
+
+
+{% endblock content %}
+
+

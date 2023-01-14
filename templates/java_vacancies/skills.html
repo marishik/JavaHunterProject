@@ -1,0 +1,45 @@
+{% extends "java_vacancies/base.html" %}
+
+{% block page_items %}
+    <li><a href="{% url 'vacancies:index' %}">Главная</a></li>
+    <li><a href="{% url 'vacancies:demand' %}">Востребованность</a></li>
+    <li><a href="{% url 'vacancies:geography' %}">География</a></li>
+    <li class="current_page_item"><a href="{% url 'vacancies:skills' %}">Навыки</a></li>
+    <li><a href="{% url 'vacancies:hh_vacancies' %}">Последние вакансии</a></li>
+{% endblock page_items %}
+
+{% block content %}
+    <h1>Топ-10 навыков по годам.</h1>
+    <div class="skills_div">
+    {% for year_skill in skills_years %}
+        <div class="skill_div">
+        <h2>{{year_skill.0  }}</h2>
+        <table class="table_blur">
+            <thead>
+            <tr>
+                <th>Навык</th>
+                <th>Количество</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for entry in year_skill.1 %}
+                <tr>
+                    <td>{{ entry.name }}</td>
+                    <td>{{ entry.count }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+        </div>
+    {% endfor %}
+
+    </div>
+
+
+
+
+{% endblock content %}
+
+
+
